@@ -11,4 +11,9 @@ if(!function_exists('get_scripts_and_styles')) {
 add_action( 'wp_enqueue_scripts', 'get_scripts_and_styles' );
 
 // add support to Woocommerce
-add_theme_support('woocommerce');
+if(!function_exists('woocommerce_support')) {
+    function woocommerce_support() {
+        add_theme_support( 'woocommerce' );
+    }
+}
+add_action( 'after_setup_theme', 'woocommerce_support' );
